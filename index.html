@@ -1,0 +1,214 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>IRIS Schedule Viewer</title>
+    <style>
+        /* http://meyerweb.com/eric/tools/css/reset/
+        v2.0 | 20110126
+        License: none (public domain)
+        */
+
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed,
+        figure, figcaption, footer, header, hgroup,
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+        /* HTML5 display-role reset for older browsers */
+        article, aside, details, figcaption, figure,
+        footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+        body {
+            line-height: 1;
+        }
+        ol, ul {
+            list-style: none;
+        }
+        blockquote, q {
+            quotes: none;
+        }
+        blockquote:before, blockquote:after,
+        q:before, q:after {
+            content: '';
+            content: none;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        /*
+          Custom styles
+        */
+        body {
+            font-family: sans-serif;
+        }
+
+        .iris-header h1 {
+            padding: 1em;
+            text-align: center;
+            font-size: 150%;
+            font-weight: bold;
+            margin: 0.5em 0.5em 0;
+        }
+
+        .dev-links {
+            margin-top: 0;
+            margin-bottom: 2em;
+            text-align: center;
+            font-size: x-small;
+        }
+        .dev-links a {
+            text-decoration: none;
+        }
+        .dev-links a:hover {
+            color: red;
+        }
+        #container, #logContainer, #controls {
+            margin: 0 auto 2em;
+        }
+        #logContainer, #controls {
+            text-align: center;
+        }
+        #log {
+            display: inline-block;
+            width: 600px;
+            height: 200px;
+        }
+
+    </style>
+
+  <link href="style.min.css" rel="stylesheet"><script type="text/javascript" src="bundle.min.js"></script></head>
+  <body>
+
+    <section class='iris-header'>
+        <h1>IRIS Schedule Viewer</h2>
+    </section>
+
+    <div id="container"></div>
+    
+    <div id="controls">
+        <button value="Collapse" onclick="collapseAll()">Collapse all</button>
+        <button value="Collapse" onclick="expandAll()">Expand all</button>
+    </div>
+
+    <div id="logContainer">
+        <textarea id="log" readonly></textarea>
+        <br />
+        <button value="Clear" onclick="document.getElementById('log').value = ''">Clear Log</button>
+    </div>
+
+
+    <script type="text/javascript">
+
+      // set up data
+      var data = [        
+        {
+            name: "Nottingham",
+            group: "United Kingdom",
+            timeRanges: [
+                { from: new Date("2017-01-01T12:30"), to: new Date("2017-02-20T09:00") },
+                { from: new Date("2017-11-02T12:30"), to: new Date("2017-12-31T09:00"), data: "some data" }
+            ]
+        },
+        {
+            name: "The Bermuda Triangle",
+            timeRanges: [
+                { from: new Date("2017-04-20T12:30"), to: new Date("2017-05-30T09:00") }
+            ]
+        },
+        {
+            name: "Cheltenham",
+            group: "United Kingdom",
+            timeRanges: [
+                { from: new Date("2017-02-20T12:30"), to: new Date("2017-02-30T09:00") },
+                { from: new Date("2017-08-21T12:30"), to: new Date("2017-09-25T09:00") }
+            ]
+        },
+        {
+            name: "Madrid",
+            group: "Spain",
+            timeRanges: [
+                { from: new Date("2017-06-21T12:30"), to: new Date("2017-07-25T09:00") }
+            ]
+        },
+        {
+            name: "London",
+            group: "United Kingdom",
+            timeRanges: [
+                { from: new Date("2017-02-28T12:30"), to: new Date("2017-04-20T12:30") },
+            ]
+        },
+        {
+            name: "Twin Peaks",
+            group: "USA",            
+            timeRanges: [
+                { from: new Date("2017-10-01T12:30"), to: new Date("2017-11-02T09:00") }
+            ]
+        },
+        {
+            name: "Vatican City",
+            timeRanges: [
+                { from: new Date("2017-05-30T12:30"), to: new Date("2017-06-21T09:00") }
+            ]
+        }
+      ]
+
+      // set up options
+      var options = {
+          title: "Schedule Viewer Title",
+          width: 1000,
+          allowSectionSelection: true,
+          allowSectionMultiSelect: true
+      };
+
+      // construct a new instance      
+      scheduleViewer = new IRISScheduleViewer.ScheduleViewer(document.getElementById('container'), data, options);
+
+      // Example of listening to a click event
+      scheduleViewer.on("timeDataClick", function(datum) {
+        log("clicked " + JSON.stringify(datum));
+      });
+
+       scheduleViewer.on("timeDataBrushEnd", function(from , to, data) {
+        log("brushed from " + from + " to " + to);
+        log("This would include the following data: " + JSON.stringify(scheduleViewer.getTimeRangesBetween(from, to)))
+      });
+
+      scheduleViewer.on('sectionSelected', function(datum) {
+        log("Selected section " + JSON.stringify(datum));
+      })
+
+      // render the component
+      scheduleViewer.render();
+
+      function log(text) {
+          document.getElementById("log").value += text + "\n";
+      }
+
+      function expandAll() {
+        scheduleViewer.expandAllGroups();
+      }      
+
+      function collapseAll() {
+        scheduleViewer.collapseAllGroups();
+      }      
+
+    </script>
+  </body>
+</html>
