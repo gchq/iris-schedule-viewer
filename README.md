@@ -2,7 +2,7 @@
 
 An IRIS component for displaying gantt-style categorized data over time.
 
-TODO: Add link to demo.
+[Demo on gh-pages](https://gchq.github.io/iris-schedule-viewer/)
 
 ### Features
 
