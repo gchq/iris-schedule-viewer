@@ -1,0 +1,235 @@
+.iris-schedule-viewer {
+  /* http://meyerweb.com/eric/tools/css/reset/
+  v2.0 | 20110126
+  License: none (public domain)
+  */
+  /* HTML5 display-role reset for older browsers */
+}
+.iris-schedule-viewer html,
+.iris-schedule-viewer body,
+.iris-schedule-viewer div,
+.iris-schedule-viewer span,
+.iris-schedule-viewer applet,
+.iris-schedule-viewer object,
+.iris-schedule-viewer iframe,
+.iris-schedule-viewer h1,
+.iris-schedule-viewer h2,
+.iris-schedule-viewer h3,
+.iris-schedule-viewer h4,
+.iris-schedule-viewer h5,
+.iris-schedule-viewer h6,
+.iris-schedule-viewer p,
+.iris-schedule-viewer blockquote,
+.iris-schedule-viewer pre,
+.iris-schedule-viewer a,
+.iris-schedule-viewer abbr,
+.iris-schedule-viewer acronym,
+.iris-schedule-viewer address,
+.iris-schedule-viewer big,
+.iris-schedule-viewer cite,
+.iris-schedule-viewer code,
+.iris-schedule-viewer del,
+.iris-schedule-viewer dfn,
+.iris-schedule-viewer em,
+.iris-schedule-viewer img,
+.iris-schedule-viewer ins,
+.iris-schedule-viewer kbd,
+.iris-schedule-viewer q,
+.iris-schedule-viewer s,
+.iris-schedule-viewer samp,
+.iris-schedule-viewer small,
+.iris-schedule-viewer strike,
+.iris-schedule-viewer strong,
+.iris-schedule-viewer sub,
+.iris-schedule-viewer sup,
+.iris-schedule-viewer tt,
+.iris-schedule-viewer var,
+.iris-schedule-viewer b,
+.iris-schedule-viewer u,
+.iris-schedule-viewer i,
+.iris-schedule-viewer center,
+.iris-schedule-viewer dl,
+.iris-schedule-viewer dt,
+.iris-schedule-viewer dd,
+.iris-schedule-viewer ol,
+.iris-schedule-viewer ul,
+.iris-schedule-viewer li,
+.iris-schedule-viewer fieldset,
+.iris-schedule-viewer form,
+.iris-schedule-viewer label,
+.iris-schedule-viewer legend,
+.iris-schedule-viewer table,
+.iris-schedule-viewer caption,
+.iris-schedule-viewer tbody,
+.iris-schedule-viewer tfoot,
+.iris-schedule-viewer thead,
+.iris-schedule-viewer tr,
+.iris-schedule-viewer th,
+.iris-schedule-viewer td,
+.iris-schedule-viewer article,
+.iris-schedule-viewer aside,
+.iris-schedule-viewer canvas,
+.iris-schedule-viewer details,
+.iris-schedule-viewer embed,
+.iris-schedule-viewer figure,
+.iris-schedule-viewer figcaption,
+.iris-schedule-viewer footer,
+.iris-schedule-viewer header,
+.iris-schedule-viewer hgroup,
+.iris-schedule-viewer menu,
+.iris-schedule-viewer nav,
+.iris-schedule-viewer output,
+.iris-schedule-viewer ruby,
+.iris-schedule-viewer section,
+.iris-schedule-viewer summary,
+.iris-schedule-viewer time,
+.iris-schedule-viewer mark,
+.iris-schedule-viewer audio,
+.iris-schedule-viewer video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+.iris-schedule-viewer article,
+.iris-schedule-viewer aside,
+.iris-schedule-viewer details,
+.iris-schedule-viewer figcaption,
+.iris-schedule-viewer figure,
+.iris-schedule-viewer footer,
+.iris-schedule-viewer header,
+.iris-schedule-viewer hgroup,
+.iris-schedule-viewer menu,
+.iris-schedule-viewer nav,
+.iris-schedule-viewer section {
+  display: block;
+}
+.iris-schedule-viewer body {
+  line-height: 1;
+}
+.iris-schedule-viewer ol,
+.iris-schedule-viewer ul {
+  list-style: none;
+}
+.iris-schedule-viewer blockquote,
+.iris-schedule-viewer q {
+  quotes: none;
+}
+.iris-schedule-viewer blockquote:before,
+.iris-schedule-viewer blockquote:after,
+.iris-schedule-viewer q:before,
+.iris-schedule-viewer q:after {
+  content: '';
+  content: none;
+}
+.iris-schedule-viewer table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/**
+  Base Syles
+
+  These represent the minimum styles required to display the schedule viewer properly. 
+*/
+.iris-schedule-viewer .clearFix {
+  clear: both;
+}
+.iris-schedule-viewer h1 {
+  font-weight: bold;
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+.iris-schedule-viewer section {
+  padding: 0.5em 0;
+}
+.iris-schedule-viewer section.group,
+.iris-schedule-viewer section.ungrouped {
+  border-top: 1px solid darkgrey;
+}
+.iris-schedule-viewer section:last-child {
+  border-bottom: 1px solid darkgrey;
+}
+.iris-schedule-viewer section h2,
+.iris-schedule-viewer section h3 {
+  font-size: .8em;
+  width: 10em;
+  float: left;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+.iris-schedule-viewer section .iris-schedule-viewer__selectButton {
+  width: 1em;
+  height: 1em;
+  margin-right: .5em;
+  cursor: pointer;
+}
+.iris-schedule-viewer section h2 button {
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+}
+.iris-schedule-viewer section h2 button:after {
+  margin-left: .5em;
+}
+.iris-schedule-viewer section h2 button[data-expanded=false]:after {
+  content: "\25BA";
+}
+.iris-schedule-viewer section h2 button[data-expanded=true]:after {
+  content: "\25BC";
+}
+.iris-schedule-viewer section ul {
+  display: inline-block;
+  list-style: none;
+  padding: 0;
+  position: relative;
+  vertical-align: text-top;
+}
+.iris-schedule-viewer section ul li time button {
+  position: absolute;
+  height: 1em;
+  border: 0;
+  overflow: visible;
+}
+.iris-schedule-viewer section hr {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+.iris-schedule-viewer section span[data-iris-tooltip] {
+  display: none;
+  z-index: 10;
+  background-color: white;
+  border: solid 1px silver;
+  font-size: .8em;
+  position: absolute;
+  width: 200px;
+  top: 1.5em;
+  padding: .6em;
+}
+.iris-schedule-viewer .axis {
+  z-index: 10;
+}
+.iris-schedule-viewer .brushContainer {
+  overflow: hidden;
+}
+/**
+  Theme
+
+  These represent visual flourishes and extra touches in addition to the base styles.
+*/
+.iris-schedule-viewer section ul li time button {
+  transition: all ease 0.5s;
+}
+.iris-schedule-viewer section ul li time button:hover {
+  box-shadow: inset 0 -2em 5px rgba(0, 0, 0, 0.1);
+}
+.iris-schedule-viewer section span.tooltip {
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+/*# sourceMappingURL=style.css.map*/

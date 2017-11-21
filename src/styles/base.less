@@ -1,0 +1,110 @@
+/**
+  Base Syles
+
+  These represent the minimum styles required to display the schedule viewer properly. 
+*/
+.iris-schedule-viewer {
+
+  .clearFix {
+    clear: both;
+  }
+
+  h1 {
+    font-weight: bold;
+    font-size: 2em;
+    margin-bottom: 1em;
+  }
+
+  section {
+    padding: 0.5em 0;
+
+    &.group, &.ungrouped {
+      border-top: 1px solid @gray;
+    }
+
+    &:last-child {
+      border-bottom: 1px solid @gray;
+    }
+
+    h2, h3 {
+      font-size: .8em;
+      width: 10em;
+      float: left;
+      margin: 0;
+      overflow-wrap: break-word;
+    }
+
+    .iris-schedule-viewer__selectButton {
+      width: 1em;
+      height: 1em;
+      margin-right: .5em;
+      cursor: pointer;
+    }
+
+    h2 button {
+      cursor: pointer;
+      border: 0;
+      background-color: transparent;
+      padding: 0;
+      margin: 0;
+      font-weight: bold;
+
+      &:after {
+        margin-left: .5em;
+      }
+
+      &[data-expanded=false]:after {
+        content: "\25BA";
+      }
+      &[data-expanded=true]:after {
+          content: "\25BC";
+      }
+    }
+    
+
+    ul {
+        display: inline-block;
+        list-style: none;
+        padding: 0;
+        position: relative;
+        vertical-align: text-top;
+
+        li {
+
+          time button {
+            position: absolute;
+            height: 1em;
+            border: 0;
+            overflow: visible;          
+          }
+        }
+      }
+    
+    hr {
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+
+    span[data-iris-tooltip] {
+      display: none;
+      z-index: 10;
+      background-color: white;
+      border: solid 1px silver;
+      font-size: .8em;
+      position: absolute;
+      width: 200px;
+      top: 1.5em;
+      padding: .6em;
+    }
+  }
+
+  .axis {
+    z-index: 10;
+  }
+
+  .brushContainer {
+    overflow: hidden;
+  }
+
+}
