@@ -73,7 +73,7 @@ var options = {
 }
 
 // construct a new instance
-var scheduleViewer = new IRISScheduleViewer(document.getElementById('containerId'), data, options);
+var scheduleViewer = new IRISScheduleViewer.ScheduleViewer(document.getElementById('containerId'), data, options);
 
 // render the component
 scheduleViewer.render();
