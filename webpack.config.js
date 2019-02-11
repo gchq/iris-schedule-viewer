@@ -23,8 +23,7 @@ module.exports = {
         use: [{
           loader: 'babel-loader' ,
           query: {
-            presets: ['es2015'],
-            plugins: ['transform-object-assign']
+            presets: ['env']            
           }
         }],
 
